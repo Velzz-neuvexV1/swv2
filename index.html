@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panda Web Video Compressor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <main class="app-container">
+    <header class="brand-header">
+      <div class="badge">Panda Engine v1.0</div>
+      <h1>Panda Video Compressor</h1>
+      <p>Kompresi video ramah WhatsApp Status langsung di browser tanpa batas.</p>
+    </header>
+
+    <section class="glass-card">
+      <!-- State 1: Upload Zone -->
+      <div id="dropZone" class="drop-zone">
+        <input type="file" id="videoInput" accept="video/*" hidden />
+        <div class="upload-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <p class="primary-text">Pilih file video atau tarik ke sini</p>
+        <p class="secondary-text">Format MP4, WebM, MOV disarankan</p>
+      </div>
+
+      <!-- State 2: Preview & Controls -->
+      <div id="processSection" class="process-section hidden">
+        <div class="file-meta">
+          <div class="meta-icon">🐼</div>
+          <div class="meta-info">
+            <span id="fileName" class="file-name">video.mp4</span>
+            <span id="fileSize" class="file-size">0 MB</span>
+          </div>
+          <button id="btnReset" class="btn-icon" title="Ganti Video">✕</button>
+        </div>
+
+        <div class="settings-grid">
+          <div class="setting-item">
+            <label for="qualitySelect">Ukuran Output (Preset Panda)</label>
+            <select id="qualitySelect">
+              <option value="fit-sw" selected>Pas untuk WA Status (720p HD, ~2 Mbps)</option>
+              <option value="small">Small Fit (480p SD, Hemat Memori)</option>
+              <option value="high">High Quality (1080p FHD, Bitrate Tinggi)</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="btnCompress" class="btn-primary">
+          <span>Kompres Video Sekarang</span>
+        </button>
+      </div>
+
+      <!-- State 3: Progress Overlay -->
+      <div id="progressSection" class="progress-section hidden">
+        <div class="progress-header">
+          <span id="statusText">Memproses video...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progressBar" class="progress-bar-fill"></div>
+        </div>
+        <p class="processing-note">Memproses lokal menggunakan Akselerasi Hardware Browser.</p>
+      </div>
+
+      <!-- State 4: Result -->
+      <div id="resultSection" class="result-section hidden">
+        <div class="result-badge">Selesai</div>
+        <div class="stats-container">
+          <div class="stat-box">
+            <span class="stat-label">Sebelum</span>
+            <span id="sizeBefore" class="stat-value">0 MB</span>
+          </div>
+          <div class="stat-divider">→</div>
+          <div class="stat-box Highlight">
+            <span class="stat-label">Sesudah</span>
+            <span id="sizeAfter" class="stat-value">0 MB</span>
+          </div>
+        </div>
+        <a id="downloadLink" class="btn-primary btn-download" download="panda_compressed.webm">
+          Unduh Hasil Video
+        </a>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p>Panda Compressor Client-Side Engine</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
